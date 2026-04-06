@@ -1,13 +1,8 @@
 # PyInstaller spec file for building a standalone filesearch executable.
 # Usage:  pyinstaller filesearch.spec
 
-import importlib
-import os
-
-pypdf_path = os.path.dirname(importlib.import_module("pypdf").__file__)
-
 a = Analysis(
-    ["src/filesearch/__main__.py"],
+    ["entry_point.py"],
     pathex=["src"],
     datas=[],
     hiddenimports=["pypdf"],
