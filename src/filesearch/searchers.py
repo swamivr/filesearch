@@ -1,8 +1,12 @@
 """Search strategies for different file types."""
 
+import logging
 from pathlib import Path
 
 from pypdf import PdfReader
+
+# Suppress noisy pypdf warnings (e.g. "Ignoring wrong pointing object")
+logging.getLogger("pypdf").setLevel(logging.ERROR)
 
 
 def search_pdf(filepath: Path, term: str, ignore_case: bool) -> list[tuple[str, str]]:
