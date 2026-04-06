@@ -1,6 +1,7 @@
 """Command-line interface — argument parsing and main orchestration."""
 
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -86,9 +87,15 @@ def main(argv: list[str] | None = None) -> None:
     """Entry point for the CLI."""
     args = parse_args(argv)
 
-    root = Path(args.folder)
+    folder = args.folder
+    # On Windows, ensure UNC paths keep their leading backslashes.
+    # CMD can swallow a layer of backslashes, so accept both \\ and raw \ prefix.
+    if os.name == "nt" and folder.startswith("\\") and not folder.startswith("\\\\"):
+        folder = "\\" + folder  # restore the missing leading backslash
+
+    root = Path(folder)
     if not root.is_dir():
-        print(f"{Colors.RED}Error: '{args.folder}' is not a valid directory.{Colors.RESET}")
+        print(f"{Colors.RED}Error: '{folder}' is not a valid directory.{Colors.RESET}")
         sys.exit(1)
 
     term = args.search_term
