@@ -2,11 +2,34 @@
 name = "filesearch"
 version = "1.0.0"
 description = "Recursively search files (including PDFs) for a word or phrase."
+readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
+authors = [
+    {name = "swamivr"},
+]
+keywords = ["search", "pdf", "grep", "cli", "file-search"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Utilities",
+]
 dependencies = [
     "pypdf>=4.0.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/swamivr/filesearch"
+Repository = "https://github.com/swamivr/filesearch"
+Issues = "https://github.com/swamivr/filesearch/issues"
 
 [project.scripts]
 filesearch = "filesearch.cli:main"
